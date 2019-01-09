@@ -1,47 +1,109 @@
 @charset "utf-8";
 
 /* --------------------
-　サイト共通ルール設定
+サイト共通ルール設定
+- ラベルの文字色
+- 必須の文字色
+- 文字色
+- input 枠線色
+- 文字サイズ
 - ボタンの色
 - ボタンの :hover 時
-- ラベルの文字色
+
 -------------------- */
-// ボタンデフォルト
+$labelColor: yellow;
+$badgeColor: red;
+$textColor : green;
+$bdColor   : blue;
+$basefontSize: 1.6rem;
+
+// デフォルト
 $ btnColor   : #000;
 $ btnBdColor : #000;
 $ btntxtColor: #000;
 
-// ボタンhover
+// hover
 $ btnHoColor   : #000;
 $ btnHoBdColor : #000;
 $ btnHotxtColor: #000;
 
-// ラヴェル色
-$ labelColor: #000;
 
 /* --------------------
-form css
+カスタム css 入力フェーズ
 -------------------- */
 .container {}           // 外枠
 .content-form {}        // 内枠
 
-.form-column {          // form入力ブロック
-  .label {}             // ラベル
-  .required-mark {}     // 必須
-  input {
-  &[type=text], &[type=email], &[type=tel], &[type=url] ,textarea {}
-  &[type=checkbox] {}
-  &[type=radio] {}
+/* form入力ブロック */
+.form-column {
+  // ラベル
+  .label {
+    color: $textColor;
   }
-  .description-block {} // 入力補足説明
-
-  .button-group {       // ボタンブロック
-    & .button {}
-    .button {
-      &-confirm {}      // 送信内容を確認する
-      &-submit {}       // 送信する
+  // 必須
+  .badge {
+    &-required {
+      color: $badgeColor;
     }
   }
+  input {
+    &[type=text], &[type=email], &[type=tel], &[type=url] {
+      width: 100%;
+      height: auto;
+      border: 1px solid $bdColor;
+    }
+    &[type=checkbox] {}
+    &[type=radio] {}
+  }
+  textarea {
+    width: 100%;
+    height: auto;
+  }
+  // radio,checkbox セットブロック
+  .option {
+    .input-group {
+      // radio テキスト
+      .option-text {
+        font-size: $basefontSize;
+      }
+    }
+  }
+  // 入力補足説明
+  .description-block {}
+
+  // ボタン
+  .button-group {
+    text-align: center;
+    & button {
+      background-color: $btnColor;
+    }
+      .button {
+        &-confirm {}      // 送信内容を確認する
+        &-submit {}       // 送信する
+        &-button-back {}  // 戻る
+      }
+    }
+  }
+/* --------------------
+カスタム css 確認フェーズ
+-------------------- */
+.content-confirmation {}        // 内枠
+
+/* 確認アナウンス文枠 */
+.message-block-confirmation {}
+
+/* 入力値のプレビュー */
+.form-column {
+  .preview-block {}
+}
+
+/* --------------------
+カスタム css 完了フェーズ
+-------------------- */
+.content-complete {}          // 内枠
+
+/* 完了メッセージ */
+.message-block-complete {}
 
   /* --------------------
   あまり使わなそう（ラベルと入力値セットブロック）
@@ -62,4 +124,5 @@ form css
   #{&}-note {}          // テキスト表示エリア
   #{&}-file {}          // ファイル
 }
+
 
