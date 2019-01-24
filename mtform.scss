@@ -9,7 +9,6 @@
 - 文字サイズ
 - ボタンの色
 - ボタンの :hover 時
-
 -------------------- */
 $labelColor: yellow;
 $badgeColor: red;
@@ -18,26 +17,37 @@ $bdColor   : blue;
 $basefontSize: 1.6rem;
 
 // デフォルト
-$ btnColor   : #000;
-$ btnBdColor : #000;
-$ btntxtColor: #000;
+$btnColor   : #000;
+$btnBdColor : #000;
+$btntxtColor: #000;
 
 // hover
-$ btnHoColor   : #000;
-$ btnHoBdColor : #000;
-$ btnHotxtColor: #000;
+$btnHoColor   : #000;
+$btnHoBdColor : #000;
+$btnHotxtColor: #000;
 
 
-/* --------------------
-カスタム css 入力フェーズ
--------------------- */
-.container {}           // 外枠
-.content-form {}        // 内枠
+// カスタム css 共通
+.container {
+  max-width: 700px;
+  width: 100%;
+  margin: auto;
+  padding: 20px 15px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background: #FFF;
+  box-sizing: border-box;
+}
+.content-form {}
 
-/* form入力ブロック */
 .form-column {
+  margin-bottom: 15px;
   // ラベル
   .label {
+    display: block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
     color: $textColor;
   }
   // 必須
@@ -46,9 +56,12 @@ $ btnHotxtColor: #000;
       color: $badgeColor;
     }
   }
+
+  // カスタム css 入力フェーズ
   input {
     &[type=text], &[type=email], &[type=tel], &[type=url] {
-      width: 100%;
+      max-width: 80%;
+      width: 15em;
       height: auto;
       border: 1px solid $bdColor;
     }
@@ -56,11 +69,13 @@ $ btnHotxtColor: #000;
     &[type=radio] {}
   }
   textarea {
-    width: 100%;
-    height: auto;
+    min-width: 225px;
+    width: 70%;
+    height: 10em;
   }
   // radio,checkbox セットブロック
   .option {
+    display: block;
     .input-group {
       // radio テキスト
       .option-text {
@@ -75,54 +90,76 @@ $ btnHotxtColor: #000;
   .button-group {
     text-align: center;
     & button {
+      width: 100%;
+      height: auto;
       background-color: $btnColor;
-    }
+      }
       .button {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
         &-confirm {}      // 送信内容を確認する
         &-submit {}       // 送信する
         &-button-back {}  // 戻る
       }
     }
-  }
-/* --------------------
-カスタム css 確認フェーズ
--------------------- */
-.content-confirmation {}        // 内枠
 
-/* 確認アナウンス文枠 */
-.message-block-confirmation {}
+    // カスタム css 確認フェーズ
+    .content-confirmation {}
 
-/* 入力値のプレビュー */
-.form-column {
-  .preview-block {}
+    // 確認アナウンス文枠
+    .message-block-confirmation {
+      margin-bottom: 1.5em;
+    }
+
+    // 入力値のプレビュー
+    .form-column {
+      .preview-block {
+        margin-bottom: 0;
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
+    }
+
+    // カスタム css 完了フェーズ
+    .content-complete {}
+
+    // 完了メッセージ
+    .message-block-complete {}
+
+    // あまり使わなそう（ラベルと入力値セットブロック）
+    #{&}-name {}          // お名前
+    #{&}-email {}         // メールアドレス
+    #{&}-tel {}           // 電話番号
+    #{&}-text {}          // 1行テキスト
+    #{&}-textarea {}      // 複数行テキスト
+    #{&}-zip-code-jp {}   // 郵便番号
+    #{&}-prefecture-jp {} // 都道府県
+    #{&}-checkbox {}      // チェックボックス
+    #{&}-radio {}         // ラジオボタン
+    #{&}-select {}        // ドロップダウンリスト
+    #{&}-date {}          // 年月日選択
+    #{&}-url {}           // URL
+    #{&}-calendar {}      // カレンダー
+    #{&}-note {}          // テキスト表示エリア
+    #{&}-file {}          // ファイル
 }
-
-/* --------------------
-カスタム css 完了フェーズ
--------------------- */
-.content-complete {}          // 内枠
-
-/* 完了メッセージ */
-.message-block-complete {}
-
-  /* --------------------
-  あまり使わなそう（ラベルと入力値セットブロック）
-  -------------------- */
-  #{&}-name {}          // お名前
-  #{&}-email {}         // メールアドレス
-  #{&}-tel {}           // 電話番号
-  #{&}-text {}          // 1行テキスト
-  #{&}-textarea {}      // 複数行テキスト
-  #{&}-zip-code-jp {}   // 郵便番号
-  #{&}-prefecture-jp {} // 都道府県
-  #{&}-checkbox {}      // チェックボックス
-  #{&}-radio {}         // ラジオボタン
-  #{&}-select {}        // ドロップダウンリスト
-  #{&}-date {           // 年月日選択
-  #{&}-url {}           // URL
-  #{&}-calendar {}      // カレンダー
-  #{&}-note {}          // テキスト表示エリア
-  #{&}-file {}          // ファイル
-}
-
-
